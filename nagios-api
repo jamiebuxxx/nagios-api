@@ -305,15 +305,15 @@ def http_schedule_downtime(req, objid, reqobj):
         return json_error(req, 'Downtime must be between 60 seconds and a week.')
 
     if obj.service is not None:
-        if not send_nagios_command('SCHEDULE_SVC_DOWNTIME', host, service, start_time,
+        if not send_nagios_command('SCHEDULE_SVC_DOWNTIME', 'x', host, service, start_time,
                                    end_time, fixed, 0, dur, author, comment):
             return json_error(req, 'Failed sending command to Nagios.')
     else:
-        if not send_nagios_command('SCHEDULE_HOST_DOWNTIME', host, start_time, end_time,
+        if not send_nagios_command('SCHEDULE_HOST_DOWNTIME', 'x', host, start_time, end_time,
                                    fixed, 0, dur, author, comment):
             return json_error(req, 'Failed sending command to Nagios.')
         if services_too:
-            if not send_nagios_command('SCHEDULE_HOST_SVC_DOWNTIME', host, start_time, end_time,
+            if not send_nagios_command('SCHEDULE_HOST_SVC_DOWNTIME', 'x', host, start_time, end_time,
                                        fixed, 0, dur, author, comment):
                 return json_error(req, 'Failed sending command to Nagios.')
     return json_response(req, 'scheduled')
