@@ -1,0 +1,7 @@
+# /etc/default/nagios-api
+
+# Enable Nagios API at boottime? ("no" disables nagios-api)
+# compatibility note: if this variable is _not_ found Nagios API will start
+ENABLED="no"
+
+DAEMON_OPTS="-p 8080 -c /var/lib/nagios3/rw/nagios.cmd -s /var/cache/nagios3/status.dat -l /var/log/nagios3/nagios.log"
