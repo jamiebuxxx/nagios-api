@@ -331,9 +331,9 @@ def http_cancel_downtime(req, objid, reqobj):
 
     def cancel_downtime(obj):
         if obj.service is not None:
-            return send_nagios_command('DEL_SVC_DOWNTIME', dt.downtime_id)
+            return send_nagios_command('DEL_SVC_DOWNTIME', 'x', dt.downtime_id)
         else:
-            return send_nagios_command('DEL_HOST_DOWNTIME', dt.downtime_id)
+            return send_nagios_command('DEL_HOST_DOWNTIME', 'x', dt.downtime_id)
 
     dts = []
     if objid is not None:
